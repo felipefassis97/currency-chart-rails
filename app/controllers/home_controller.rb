@@ -26,7 +26,7 @@ require 'json'
       rate = entry['high']
 
       hash[date] = rate
-      # {'09/11/2024' => 5.69} olha a data e ve o valor
+      # {'09/12/2024' => 5.69} olha a data e passa o valor
     end
 
     @chart_data << { name: currency[:code], data: hash }
