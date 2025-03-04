@@ -1,24 +1,38 @@
-# README
+# HomeController - API de Câmbio de Moeda
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este é um controlador em Ruby on Rails que recupera dados de câmbio de diferentes moedas para o real (BRL) e os prepara para exibição em um gráfico. O controlador obtém informações de uma API externa (AwesomeAPI) e processa os dados de forma que as taxas de câmbio de várias moedas sejam associadas a datas específicas.
 
-Things you may want to cover:
+## Funcionalidade
 
-* Ruby version
+O código realiza as seguintes operações:
+- Recolhe as taxas de câmbio diárias para as moedas:
+  - USD-BRL (Dólar Americano - Real)
+  - EUR-BRL (Euro - Real)
+  - BTC-BRL (Bitcoin - Real)
+  
+- Faz uma requisição à API pública `AwesomeAPI` para obter as taxas de câmbio diárias para cada moeda.
+- Processa a resposta da API, extraindo as taxas de câmbio e associando-as às respectivas datas.
+- Prepara os dados para serem exibidos em um gráfico na visão correspondente.
 
-* System dependencies
+## Dependências
 
-* Configuration
+Este controlador depende das bibliotecas Ruby padrão:
+- `net/http` - Para fazer requisições HTTP para a API.
+- `json` - Para parsear a resposta JSON da API.
 
-* Database creation
+## Estrutura de Dados
 
-* Database initialization
+O controlador define uma constante `CURRENCIES` que contém as moedas que serão usadas na requisição à API. Para cada moeda, a estrutura contém um código de moeda (por exemplo, `USD-BRL`, `EUR-BRL`, `BTC-BRL`).
 
-* How to run the test suite
+A resposta da API é processada para obter o valor da taxa de câmbio (`high`) para cada data (`timestamp`). As datas são formatadas no formato `DD/MM/YYYY`, e os valores são armazenados em um hash para cada moeda. O controlador, então, prepara esses dados para exibição em um gráfico.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Como Funciona
 
-* Deployment instructions
-
-* ...
+### 1. Definição das Moedas:
+O controlador começa com uma constante `CURRENCIES` que contém os códigos das moedas de interesse:
+```ruby
+CURRENCIES = [
+  { code: 'USD-BRL' },
+  { code: 'EUR-BRL' },
+  { code: 'BTC-BRL' },
+]
