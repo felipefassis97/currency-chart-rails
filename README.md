@@ -1,38 +1,43 @@
-# HomeController - API de Câmbio de Moeda
+# HomeController - Currency Exchange API
 
-Este é um controlador em Ruby on Rails que recupera dados de câmbio de diferentes moedas para o real (BRL) e os prepara para exibição em um gráfico. O controlador obtém informações de uma API externa (AwesomeAPI) e processa os dados de forma que as taxas de câmbio de várias moedas sejam associadas a datas específicas.
+This is a Ruby on Rails controller that retrieves exchange rate data for different currencies to the Brazilian Real (BRL) and prepares it for display on a chart. The controller fetches data from an external API (AwesomeAPI) and processes the data so that exchange rates for various currencies are associated with specific dates.
 
-## Funcionalidade
+## Functionality
 
-O código realiza as seguintes operações:
-- Recolhe as taxas de câmbio diárias para as moedas:
-  - USD-BRL (Dólar Americano - Real)
-  - EUR-BRL (Euro - Real)
-  - BTC-BRL (Bitcoin - Real)
+The code performs the following operations:
+
+- Retrieves daily exchange rates for the following currencies:
+  - USD-BRL (US Dollar - Brazilian Real)
+  - EUR-BRL (Euro - Brazilian Real)
+  - BTC-BRL (Bitcoin - Brazilian Real)
   
-- Faz uma requisição à API pública `AwesomeAPI` para obter as taxas de câmbio diárias para cada moeda.
-- Processa a resposta da API, extraindo as taxas de câmbio e associando-as às respectivas datas.
-- Prepara os dados para serem exibidos em um gráfico na visão correspondente.
+- Makes a request to the public API, AwesomeAPI, to obtain daily exchange rates for each currency.
 
-## Dependências
+- Processes the API response, extracting the exchange rates and associating them with the respective dates.
 
-Este controlador depende das bibliotecas Ruby padrão:
-- `net/http` - Para fazer requisições HTTP para a API.
-- `json` - Para parsear a resposta JSON da API.
+- Prepares the data to be displayed on a chart in the corresponding view.
 
-## Estrutura de Dados
+## Dependencies
 
-O controlador define uma constante `CURRENCIES` que contém as moedas que serão usadas na requisição à API. Para cada moeda, a estrutura contém um código de moeda (por exemplo, `USD-BRL`, `EUR-BRL`, `BTC-BRL`).
+This controller depends on the following standard Ruby libraries:
 
-A resposta da API é processada para obter o valor da taxa de câmbio (`high`) para cada data (`timestamp`). As datas são formatadas no formato `DD/MM/YYYY`, e os valores são armazenados em um hash para cada moeda. O controlador, então, prepara esses dados para exibição em um gráfico.
+- `net/http` - To make HTTP requests to the API.
+- `json` - To parse the JSON response from the API.
 
-## Como Funciona
+## Data Structure
 
-### 1. Definição das Moedas:
-O controlador começa com uma constante `CURRENCIES` que contém os códigos das moedas de interesse:
-```ruby
-CURRENCIES = [
-  { code: 'USD-BRL' },
-  { code: 'EUR-BRL' },
-  { code: 'BTC-BRL' },
-]
+The controller defines a constant `CURRENCIES` that contains the currencies to be used in the API request. For each currency, the structure contains a currency code (e.g., USD-BRL, EUR-BRL, BTC-BRL).
+
+The API response is processed to obtain the exchange rate value (`high`) for each date (`timestamp`). Dates are formatted in DD/MM/YYYY format, and values are stored in a hash for each currency. The controller then prepares this data for display in a chart.
+
+## How It Works
+
+1. **Defining Currencies:**
+   The controller starts with a constant `CURRENCIES` that contains the codes for the currencies of interest:
+
+   ```ruby
+   CURRENCIES = [
+     { code: 'USD-BRL' },
+     { code: 'EUR-BRL' },
+     { code: 'BTC-BRL' },
+   ]
